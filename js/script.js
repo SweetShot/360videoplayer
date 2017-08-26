@@ -3,12 +3,10 @@
  */
 
 'use strict';
+
+
 init2();
 function init2() {
-
-
-
-
     // Globals
     var camera, scene, renderer;
     var effect;
@@ -32,6 +30,8 @@ function init2() {
 
     var autoHideDelay = 5.0;
     var hideClock;
+
+    var dpr = 1;
     
     // End Globals
 
@@ -44,8 +44,10 @@ function init2() {
     */
     // End Scale
 
+    dpr = 1 / window.devicePixelRatio;
 
-    renderer = new THREE.WebGLRenderer();
+
+    renderer = new THREE.WebGLRenderer({antialias:false});
     renderer.setPixelRatio( window.devicePixelRatio );
     element = renderer.domElement;
     container = document.getElementById('example');
@@ -239,8 +241,8 @@ function init2() {
         camera.aspect = window.innerWidth / (window.innerHeight);
         camera.updateProjectionMatrix();
 
-        renderer.setSize( window.innerWidth, window.innerHeight );
-        effect.setSize(window.innerWidth, window.innerHeight );
+        renderer.setSize( window.innerWidth , window.innerHeight);
+        effect.setSize(window.innerWidth, window.innerHeight);
     }
 
     function update(dt) {
@@ -277,8 +279,6 @@ function init2() {
             }
             oldTheta = theta;
             oldPhi = phi;
-
-            console.log(camera.rotation.x + " " + camera.rotation.y + " " + camera.rotation.z);
 
             //mesh.rotation.x = phi;
             mesh.rotation.y = theta;
